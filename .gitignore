@@ -104,7 +104,6 @@ $RECYCLE.BIN/
 *.sig
 
 pkg/
-src/
 
 
 ### Java ###
