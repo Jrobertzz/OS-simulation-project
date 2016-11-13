@@ -18,6 +18,7 @@ ui.lnf.xml
 other.xml
 editor.xml
 editor.codeinsight.xml
+.colors/*
 
 
 # External tool builders
