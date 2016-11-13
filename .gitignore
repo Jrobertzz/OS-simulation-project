@@ -14,6 +14,11 @@ local.properties
 .settings/
 .loadpath
 .recommenders
+ui.lnf.xml
+other.xml
+editor.xml
+editor.codeinsight.xml
+
 
 # External tool builders
 .externalToolBuilders/
