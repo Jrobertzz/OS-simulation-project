@@ -5,7 +5,7 @@
  */
  
  public class MEMORY {
-                    private int SIZE = 256;
+                    private int SIZE = 256000;
                     private int[] MemoryArray = new int[SIZE]; //maybe make this an array of strings? the directions say we need that
                     public void PUT(int data, int index){
                                    MemoryArray[index] = data;
