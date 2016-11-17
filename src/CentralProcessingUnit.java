@@ -6,7 +6,7 @@
  * 
  * Created by Jrobertzz 11/10/2016
  */
-public class CPU {
+public class CentralProcessingUnit {
 		public void tick(){
 			while(1==1){
 				
