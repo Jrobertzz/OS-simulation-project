@@ -8,7 +8,7 @@
  */
 public class CentralProcessingUnit {
 		public void tick(){
-			while(1==1){
+			for(;;) {	//compiled for loop is faster than compiled while loop
 				
 			}
 		}

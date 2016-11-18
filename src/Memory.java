@@ -1,16 +1,25 @@
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+
 /*
  * Memory Hardware Class - 256 kB
  *
  * Created By wilsonjj 11/14/2016
+ * 
+ * EDIT BY JROBERTZZ:
+ * using byte array as we can literally save a text file as a byte array then call it back as a file
+ * need to add interpreter for byte files
  */
  
  public class Memory {
-                    private int SIZE = 256000;
-                    private int[] MemoryArray = new int[SIZE]; //maybe make this an array of strings? the directions say we need that
+                    private int size = 256000;
+                    byte[] RAM = new byte[size];
+                    ByteArrayOutputStream write = new ByteArrayOutputStream();
+                    ByteArrayInputStream read = new ByteArrayInputStream(RAM);
                     public void PUT(int data, int index){
-                                   MemoryArray[index] = data;
-                    }                                         //these are system operations that will be called by the I/O class
-                    public int GET(int index){
-                                  return MemoryArray[index];
+                    	//read.read(b, off, len);
+                    }
+                    public void GET(int index){
+                    	//write.write(byte[] b, int off, int len);
                     }
  }
