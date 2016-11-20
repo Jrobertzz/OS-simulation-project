@@ -9,8 +9,9 @@ public class Boot {
 		Scheduler schedule = new Scheduler();
 		Memory RAM = new Memory();
 		CentralProcessingUnit CPU = new CentralProcessingUnit();
-		GraphicalUserInterface graphicalUserInterface = new GraphicalUserInterface();
-		Process GUI = new Process(0, graphicalUserInterface.priority);
+		GraphicalUserInterface GUI = new GraphicalUserInterface();
+		//Process GUI = new Process(0, graphicalUserInterface.priority);
+		MemTest test = new MemTest(RAM, GUI);
 	}
 
 }

@@ -17,7 +17,6 @@ import javax.swing.*;
 
 public class GraphicalUserInterface implements ActionListener{
 	FlowLayout console_layout = new FlowLayout();
-	Terminator terminal;
 	protected JTextArea command_location;
 	protected JTextField command_pane;
 	protected JTextArea command_history;
@@ -81,6 +80,31 @@ public class GraphicalUserInterface implements ActionListener{
         command_history.setCaretPosition(command_history.getDocument().getLength());
         command_pane.setText(null);
 
-		terminal = new Terminator(text);
+		Terminator(text);
     }
+	
+
+	public void Terminator(String text){
+		String[] command = text.split("\\s+", 2);
+		switch (command[0]){
+			case "PROC":
+				break;
+			case "MEM":
+				break;
+			case "LOAD":
+				break;
+			case "EXE":
+				break;
+			case "RESET":
+				break;
+			case "EXIT":
+				System.exit(0);
+			case "print":
+		        command_history.append(command[1] + "\n");
+		        command_history.selectAll();
+		        command_history.setCaretPosition(command_history.getDocument().getLength());
+				Terminator(command[1]);
+			default:break;
+		}
+	}
 }
