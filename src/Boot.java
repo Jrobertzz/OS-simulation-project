@@ -11,7 +11,9 @@ public class Boot {
 		CentralProcessingUnit CPU = new CentralProcessingUnit();
 		GraphicalUserInterface GUI = new GraphicalUserInterface();
 		//Process GUI = new Process(0, graphicalUserInterface.priority);
+		
 		MemTest test = new MemTest(RAM, GUI);
+		File tests = new File("test.tzt", GUI);
 	}
 
 }

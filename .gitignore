@@ -1,6 +1,11 @@
 
 # Created by https://www.gitignore.io/api/java,eclipse,linux,windows,archlinuxpackages
 
+### OTHER STUFF ###
+# the fake hard drive is 1 GB, github will not take this, so I made a program to generate the hard drive
+HDD
+
+
 ### Eclipse ###
 
 .metadata

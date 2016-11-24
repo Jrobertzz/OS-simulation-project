@@ -1,19 +1,23 @@
 import java.io.ByteArrayInputStream;
 import java.nio.ByteBuffer;
 import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.RandomAccessFile;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.nio.ByteBuffer;
 import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
 
 /*
  * Memory Hardware Class - 256 kB
  *
  * Created By wilsonjj 11/14/2016
  * 
- * EDIT BY JROBERTZZ:
- * using byte array as we can literally save a text file as a byte array then call it back as a file
- * need to add interpreter for byte files
+ * Jrobertzz: basically created entire class
  */
  
 public class Memory {
