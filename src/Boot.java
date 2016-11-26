@@ -10,6 +10,7 @@ public class Boot {
 		Memory RAM = new Memory();
 		CentralProcessingUnit CPU = new CentralProcessingUnit();
 		GraphicalUserInterface GUI = new GraphicalUserInterface();
+		PIDList PIDs = new PIDList();
 		//Process GUI = new Process(0, graphicalUserInterface.priority);
 		
 		MemTest test = new MemTest(RAM, GUI);
