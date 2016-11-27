@@ -11,14 +11,15 @@ import java.util.StringTokenizer;
  * Created by Jrobertzz 11/10/2016
  */
 public class CentralProcessingUnit {
-	boolean interupt;
-	static String opcode;
-	static int opcodeLength;
-	int instructionPointer;
-	static Interpretor cache_interpretor;
-	int cycles;
-	byte[] registers;
-	byte[] cache;
+	private static boolean interupt;
+	private static String opcode;
+	private static int opcodeLength;
+	private static int instructionPointer;
+	private static String command;
+	private static Interpretor cache_interpretor;
+	private static int cycles;
+	private static byte[] registers;
+	private static byte[] cache;
 		public CentralProcessingUnit(Memory RAM){
 			cache_interpretor = new Interpretor();
 			registers = new byte[16];	//16 registers stored in array
@@ -201,7 +202,7 @@ public class CentralProcessingUnit {
 					break;
 					
 				case "add":
-					String command = String.format("set R1 %s", ops[1]);
+					command = String.format("set R1 %s", ops[1]);
 					this.setOpcode(0, cache_interpretor.stringToByteArray(command));
 					this.cycle();
 					
@@ -214,6 +215,24 @@ public class CentralProcessingUnit {
 					this.cycle();
 					
 					System.out.println(cache_interpretor.byteToInt(registers[2]));
+					break;
+				
+				case "sub":
+					command = String.format("set R1 %s", ops[1]);
+					this.setOpcode(0, cache_interpretor.stringToByteArray(command));
+					this.cycle();
+					
+					command = String.format("set R2 %s", ops[2]);
+					this.setOpcode(0, cache_interpretor.stringToByteArray(command));
+					this.cycle();
+					
+					command = String.format("set R3 %s", (cache_interpretor.byteToInt(registers[0]) - cache_interpretor.byteToInt(registers[1])));
+					this.setOpcode(0, cache_interpretor.stringToByteArray(command));
+					this.cycle();
+					
+					System.out.println(cache_interpretor.byteToInt(registers[2]));
+					break;
+					
 					
 				case "test":
 					System.out.println("worked");

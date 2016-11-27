@@ -24,6 +24,7 @@ public class Boot {
 		/**/		CPU.setOpcode(0, test.stringToByteArray("load R4"));	/**/
 		/**/		System.out.println("CPU output:	" + CPU.cycle());		/**/
 					CPU.setOpcode(0, test.stringToByteArray("add 3 4"));
+					CPU.setOpcode(0, test.stringToByteArray("sub 10 40"));
 		/**************************TESTING CPU ON BOOT*************************/
 
 		//byte[] initramfs = new byte[1];
