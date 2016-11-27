@@ -8,6 +8,9 @@ public class Interpretor {
 	public int byteArrayToInt(byte[] b){
 		return new BigInteger(b).intValue();
 	}
+	public Byte intToByte(int a){
+		return (byte) a;
+	}
 	
 	public byte[] stringToByteArray(String a){
 		return a.getBytes();
