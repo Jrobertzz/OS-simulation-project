@@ -15,6 +15,9 @@ public class Interpretor {
 	public String byteArrayToString(byte[] a){
 		return new String(a);
 	}
+	public Byte stringToByte(String a){
+		return (a.getBytes())[0];
+	}
 
 	public byte[] charToByteArray(char a){
 		String b = Character.toString(a);

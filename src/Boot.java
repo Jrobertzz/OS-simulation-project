@@ -12,14 +12,18 @@ public class Boot {
 		PIDList PIDs = new PIDList();
 		CentralProcessingUnit CPU = new CentralProcessingUnit(RAM);
 		
-		/*TESTING CPU ON BOOT**************************************************/
+		/**************************TESTING CPU ON BOOT*************************/
 		/**/		Interpretor test = new Interpretor();					/**/
 		/**/		String testopcode = "test";								/**/
 		/**/		byte[] initramfs = test.stringToByteArray(testopcode);	/**/
-		/**/		//System.out.println(test.byteArrayToString(initramfs));	/**/
-		/**/		CPU.setOpcode(0, initramfs);								/**/
-		/**/		System.out.println(test.byteArrayToString(CPU.cache));		/**/
-		/*TESTING CPU ON BOOT**************************************************/
+		/**/		//System.out.println(test.byteArrayToString(initramfs));/**/
+		/**/		CPU.setOpcode(0, initramfs);							/**/
+		/**/		System.out.println(test.byteArrayToString(CPU.cache));	/**/
+		/**/		CPU.setOpcode(0, test.stringToByteArray("set R4 4"));	/**/	//returns ASCII code for ints
+		/**/		CPU.cycle();											/**/
+		/**/		CPU.setOpcode(0, test.stringToByteArray("load R4"));	/**/
+		/**/		System.out.println("CPU output:	" + CPU.cycle());		/**/
+		/**************************TESTING CPU ON BOOT*************************/
 
 		//byte[] initramfs = new byte[1];
 		//initramfs[0] = 0;
