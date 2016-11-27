@@ -14,20 +14,21 @@ public class Boot {
 		
 		/**************************TESTING CPU ON BOOT*************************/
 		/**/		Interpretor test = new Interpretor();					/**/
-		/**/		String testopcode = "test";								/**/
-		/**/		byte[] initramfs = test.stringToByteArray(testopcode);	/**/
+		/**/		//String testopcode = "test";								/**/
+		/**/		//byte[] initramfs = test.stringToByteArray(testopcode);	/**/
 		/**/		//System.out.println(test.byteArrayToString(initramfs));/**/
-		/**/		CPU.setOpcode(0, initramfs);							/**/
-		/**/		System.out.println(test.byteArrayToString(CPU.cache));	/**/
-		/**/		CPU.setOpcode(0, test.stringToByteArray("set R4 4"));	/**/	//returns ASCII code for ints
+		/**/		//CPU.setOpcode(0, initramfs);							/**/
+		/**/		//System.out.println(test.byteArrayToString(CPU.cache));	/**/
+		/**/		CPU.setOpcode(0, test.stringToByteArray("set R4 4"));	/**/
 		/**/		CPU.cycle();											/**/
 		/**/		CPU.setOpcode(0, test.stringToByteArray("load R4"));	/**/
 		/**/		System.out.println("CPU output:	" + CPU.cycle());		/**/
+					CPU.setOpcode(0, test.stringToByteArray("add 3 4"));
 		/**************************TESTING CPU ON BOOT*************************/
 
 		//byte[] initramfs = new byte[1];
 		//initramfs[0] = 0;
-		CPU.setCache(0, initramfs);
+		//CPU.setCache(0, initramfs);
 		//Process GUI = new Process(0, graphicalUserInterface.priority);
 		
 		MemTest testmem = new MemTest(RAM, GUI);

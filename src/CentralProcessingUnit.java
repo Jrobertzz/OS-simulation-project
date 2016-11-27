@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Formatter;
 import java.util.StringTokenizer;
 
 /*
@@ -42,7 +43,7 @@ public class CentralProcessingUnit {
 			opcodeLength=data.length;
 		}
 		public byte cycle(){
-			for(;;) {	//compiled for loop is faster than compiled while loop
+			//for(;;) {	//compiled for loop is faster than compiled while loop
 				
 				byte[] bytecode = new byte[opcodeLength];
 				for(int i = 0; i < opcodeLength; i++){
@@ -88,82 +89,131 @@ public class CentralProcessingUnit {
 							return registers[15];
 					}
 				case "set":
-					StringTokenizer st = new StringTokenizer(ops[2]);
+					//StringTokenizer st = new StringTokenizer(ops[2]);
 					Integer temp = null;
+					System.out.println("VALUE OF OPS[]::		" + ops[0] + ops[1] + ops[2]);
 					temp = Integer.valueOf(ops[2]);
 					//int temp = Integer.parseInt(st.nextToken());
 					if(temp == null){
 						switch(ops[1]){
 							case "R1":
 								registers[0] = cache_interpretor.stringToByte(ops[2]);
+								break;
 							case "R2":
 								registers[1] = cache_interpretor.stringToByte(ops[2]);
+								break;
 							case "R3":
 								registers[2] = cache_interpretor.stringToByte(ops[2]);
+								break;
 							case "R4":
 								registers[3] = cache_interpretor.stringToByte(ops[2]);
+								break;
 							case "R5":
 								registers[4] = cache_interpretor.stringToByte(ops[2]);
+								break;
 							case "R6":
 								registers[5] = cache_interpretor.stringToByte(ops[2]);
+								break;
 							case "R7":
 								registers[6] = cache_interpretor.stringToByte(ops[2]);
+								break;
 							case "R8":
 								registers[7] = cache_interpretor.stringToByte(ops[2]);
+								break;
 							case "R9":
 								registers[8] = cache_interpretor.stringToByte(ops[2]);
+								break;
 							case "R10":
 								registers[9] = cache_interpretor.stringToByte(ops[2]);
+								break;
 							case "R11":
 								registers[10] = cache_interpretor.stringToByte(ops[2]);
+								break;
 							case "R12":
 								registers[11] = cache_interpretor.stringToByte(ops[2]);
+								break;
 							case "R13":
 								registers[12] = cache_interpretor.stringToByte(ops[2]);
+								break;
 							case "R14":
 								registers[13] = cache_interpretor.stringToByte(ops[2]);
+								break;
 							case "R15":
 								registers[14] = cache_interpretor.stringToByte(ops[2]);
+								break;
 							case "R16":
 								registers[15] = cache_interpretor.stringToByte(ops[2]);
+								break;
 						}
 					}
 					else{
 						switch(ops[1]){
 							case "R1":
 								registers[0] = cache_interpretor.intToByte(temp);
+								break;
 							case "R2":
 								registers[1] = cache_interpretor.intToByte(temp);
+								break;
 							case "R3":
 								registers[2] = cache_interpretor.intToByte(temp);
+								break;
 							case "R4":
 								registers[3] = cache_interpretor.intToByte(temp);
+								break;
 							case "R5":
 								registers[4] = cache_interpretor.intToByte(temp);
+								break;
 							case "R6":
 								registers[5] = cache_interpretor.intToByte(temp);
+								break;
 							case "R7":
 								registers[6] = cache_interpretor.intToByte(temp);
+								break;
 							case "R8":
 								registers[7] = cache_interpretor.intToByte(temp);
+								break;
 							case "R9":
 								registers[8] = cache_interpretor.intToByte(temp);
+								break;
 							case "R10":
 								registers[9] = cache_interpretor.intToByte(temp);
+								break;
 							case "R11":
 								registers[10] = cache_interpretor.intToByte(temp);
+								break;
 							case "R12":
-									registers[11] = cache_interpretor.intToByte(temp);
+								registers[11] = cache_interpretor.intToByte(temp);
+								break;
 							case "R13":
 								registers[12] = cache_interpretor.intToByte(temp);
+								break;
 							case "R14":
 								registers[13] = cache_interpretor.intToByte(temp);
+								break;
 							case "R15":
 								registers[14] = cache_interpretor.intToByte(temp);
+								break;
 							case "R16":
 								registers[15] = cache_interpretor.intToByte(temp);
+								break;
 						}
 					}
+					break;
+					
+				case "add":
+					String command = String.format("set R1 %s", ops[1]);
+					this.setOpcode(0, cache_interpretor.stringToByteArray(command));
+					this.cycle();
+					
+					command = String.format("set R2 %s", ops[2]);
+					this.setOpcode(0, cache_interpretor.stringToByteArray(command));
+					this.cycle();
+					
+					command = String.format("set R3 %s", (cache_interpretor.byteToInt(registers[0]) + cache_interpretor.byteToInt(registers[1])));
+					this.setOpcode(0, cache_interpretor.stringToByteArray(command));
+					this.cycle();
+					
+					System.out.println(cache_interpretor.byteToInt(registers[2]));
 					
 				case "test":
 					System.out.println("worked");
@@ -172,9 +222,9 @@ public class CentralProcessingUnit {
 				default:
 					System.out.println("CRITICAL ERROR");
 				}
-				if(interupt)
-					break;
-			}
+				//if(interupt)
+					//break;
+			//}
 			return 0;
 		}
 }
