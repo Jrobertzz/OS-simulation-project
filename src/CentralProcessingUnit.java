@@ -226,11 +226,84 @@ public class CentralProcessingUnit {
 					this.setOpcode(0, cache_interpretor.stringToByteArray(command));
 					this.cycle();
 					
-					command = String.format("set R3 %s", (cache_interpretor.byteToInt(registers[0]) - cache_interpretor.byteToInt(registers[1])));
+					command = String.format("set R3 %s", (cache_interpretor.byteToInt(registers[0]) + -cache_interpretor.byteToInt(registers[1])));
 					this.setOpcode(0, cache_interpretor.stringToByteArray(command));
 					this.cycle();
 					
 					System.out.println(cache_interpretor.byteToInt(registers[2]));
+					break;
+					
+				case "mul":
+					command = String.format("set R1 %s", ops[1]);
+					this.setOpcode(0, cache_interpretor.stringToByteArray(command));
+					this.cycle();
+					
+					command = String.format("set R2 %s", ops[1]);
+					this.setOpcode(0, cache_interpretor.stringToByteArray(command));
+					this.cycle();
+					
+					command = String.format("set R16 %s", ops[2]);
+					this.setOpcode(0, cache_interpretor.stringToByteArray(command));
+					this.cycle();
+
+					command = String.format("set R15 %s", 1);
+					this.setOpcode(0, cache_interpretor.stringToByteArray(command));
+					this.cycle();
+					
+					while(cache_interpretor.byteToInt(registers[15])>1){
+						command = String.format("set R3 %s", (cache_interpretor.byteToInt(registers[0]) + cache_interpretor.byteToInt(registers[1])));
+						this.setOpcode(0, cache_interpretor.stringToByteArray(command));
+						this.cycle();
+					
+						command = String.format("set R2 %s", registers[2]);
+						this.setOpcode(0, cache_interpretor.stringToByteArray(command));
+						this.cycle();
+
+						command = String.format("set R14 %s", (cache_interpretor.byteToInt(registers[15]) + -cache_interpretor.byteToInt(registers[14])));
+						this.setOpcode(0, cache_interpretor.stringToByteArray(command));
+						this.cycle();
+					}
+					System.out.print(cache_interpretor.byteToInt(registers[2]));
+
+				case "div":
+					command = String.format("set R1 %s", ops[1]);
+					this.setOpcode(0, cache_interpretor.stringToByteArray(command));
+					this.cycle();
+					
+					command = String.format("set R2 %s", ops[2]);
+					this.setOpcode(0, cache_interpretor.stringToByteArray(command));
+					this.cycle();
+
+					command = String.format("set R3 %s", ops[1]);
+					this.setOpcode(0, cache_interpretor.stringToByteArray(command));
+					this.cycle();
+
+					command = String.format("set R16 %s", 0);
+					this.setOpcode(0, cache_interpretor.stringToByteArray(command));
+					this.cycle();
+
+					command = String.format("set R15 %s", 1);
+					this.setOpcode(0, cache_interpretor.stringToByteArray(command));
+					this.cycle();
+					
+					while(cache_interpretor.byteToInt(registers[2]) >= cache_interpretor.byteToInt(registers[1])){
+						command = String.format("set R3 %s", (cache_interpretor.byteToInt(registers[0]) + -cache_interpretor.byteToInt(registers[1])));
+						this.setOpcode(0, cache_interpretor.stringToByteArray(command));
+						this.cycle();
+
+						command = String.format("set R1 %s", registers[2]);
+						this.setOpcode(0, cache_interpretor.stringToByteArray(command));
+						this.cycle();
+						
+						command = String.format("set R14 %s", (cache_interpretor.byteToInt(registers[15]) + cache_interpretor.byteToInt(registers[14])));
+						this.setOpcode(0, cache_interpretor.stringToByteArray(command));
+						this.cycle();
+
+						command = String.format("set R16 %s", registers[13]);
+						this.setOpcode(0, cache_interpretor.stringToByteArray(command));
+						this.cycle();
+					}
+					System.out.print(cache_interpretor.byteToInt(registers[15]));
 					break;
 					
 					

@@ -14,17 +14,19 @@ public class Boot {
 		
 		/**************************TESTING CPU ON BOOT*************************/
 		/**/		Interpretor test = new Interpretor();					/**/
-		/**/		//String testopcode = "test";								/**/
-		/**/		//byte[] initramfs = test.stringToByteArray(testopcode);	/**/
+		/**/		//String testopcode = "test";							/**/
+		/**/		//byte[] initramfs = test.stringToByteArray(testopcode);/**/
 		/**/		//System.out.println(test.byteArrayToString(initramfs));/**/
 		/**/		//CPU.setOpcode(0, initramfs);							/**/
-		/**/		//System.out.println(test.byteArrayToString(CPU.cache));	/**/
+		/**/		//System.out.println(test.byteArrayToString(CPU.cache));/**/
 		/**/		CPU.setOpcode(0, test.stringToByteArray("set R4 4"));	/**/
 		/**/		CPU.cycle();											/**/
 		/**/		CPU.setOpcode(0, test.stringToByteArray("load R4"));	/**/
 		/**/		System.out.println("CPU output:	" + CPU.cycle());		/**/
-					CPU.setOpcode(0, test.stringToByteArray("add 3 4"));
-					CPU.setOpcode(0, test.stringToByteArray("sub 10 40"));
+		/**/		CPU.setOpcode(0, test.stringToByteArray("add 3 4"));	/**/
+		/**/		CPU.setOpcode(0, test.stringToByteArray("sub 10 40"));	/**/
+		/**/		CPU.setOpcode(0, test.stringToByteArray("mul 3 6"));	/**/
+		/**/		CPU.setOpcode(0, test.stringToByteArray("div 20 2"));	/**/
 		/**************************TESTING CPU ON BOOT*************************/
 
 		//byte[] initramfs = new byte[1];
