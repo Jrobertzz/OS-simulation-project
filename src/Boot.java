@@ -9,9 +9,8 @@ public class Boot {
 		Scheduler schedule = new Scheduler();
 		Memory RAM = new Memory();
 		GraphicalUserInterface GUI = new GraphicalUserInterface();
-		PIDList PIDs = new PIDList();
 		CentralProcessingUnit CPU = new CentralProcessingUnit(RAM);
-		Process newProcess = new Process(PIDs);
+		Process newProcess = new Process();
 		CPU processor = new CPU(CPU);
 		RAMFrames frames = new RAMFrames(RAM);
 		Interpretor testing = new Interpretor();

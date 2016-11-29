@@ -1,40 +1,40 @@
 
 //just look here https://en.wikipedia.org/wiki/Process_control_block
 public class ProcessControlBlock {
-	int PID;
-	State state;
+	private int PID;
+	private Process process;
+	private State state;
 	int priority, defaultPriority = 5;
 	
-	// Constructor with no PID or priority provided
-	public ProcessControlBlock(Process p, PIDList PIDs){
-		PID = generatePID(PIDs);
-		priority = defaultPriority;
-		state = State.NEW;
-	}
-	
-	// Constructor with PID and priority provided
-	public ProcessControlBlock(Process p, int PID, int priority, PIDList PIDs){
+	// Constructor with PID
+	public ProcessControlBlock(int PID){
 		this.PID = PID;
-		this.priority = priority;
-		state = State.NEW;
+		
+		// Create a new process
+		this.process = new Process(PID);		
+		this.priority = defaultPriority;
+		this.state = State.NEW;
 	}
 	
-	// Generate a random, unique PID
-	private int generatePID(PIDList PIDs){
-		int k = 0;
-		int value = 0;
-		// Generate random id for the process
-		while(k==0){
-			value = (int)(Math.random()*100);
-			if(!PIDs.PIDExists(value)){
-				k = 1;
-			}
-		}
-		return value;
+	// Constructor with process provided
+	public ProcessControlBlock(Process p){
+		this.PID = p.getPID();
+		this.process = p;
+		this.priority = defaultPriority;
+		this.state = State.NEW;
+	}
+	
+	public Process getProcess(){
+		return process;
 	}
 	
 	public int getPriority(){
 		return priority;
+	}
+	
+	public ProcessControlBlock setPriority(int p){
+		this.priority = p;
+		return this;
 	}
 	
 	public int getPID(){
@@ -45,8 +45,9 @@ public class ProcessControlBlock {
 		return state;
 	}
 	
-	public void setState(State state){
+	public ProcessControlBlock setState(State state){
 		this.state = state;
+		return this;
 	}
 	
 	//TODO
@@ -68,3 +69,4 @@ public class ProcessControlBlock {
 	public void setCPUTime(){}
 
 }
+

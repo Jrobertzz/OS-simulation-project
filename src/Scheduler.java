@@ -1,4 +1,4 @@
-import java.util.ArrayList;
+import java.util.Comparator;
 
 /*
  * Simple Scheduler, ideally broken up into
@@ -7,38 +7,47 @@ import java.util.ArrayList;
  * created be Jrobertzz
  */
 public class Scheduler{
-	static ExecutionQueue<ProcessControlBlock> waiting;
-	static ExecutionQueue<ProcessControlBlock> ready;
+	private Comparator<ProcessControlBlock> comparator = new PriorityComparator();
+	private ExecutionQueue waiting;
+	private ExecutionQueue ready;
 
 	public Scheduler(){
-		waiting = new ExecutionQueue<ProcessControlBlock>();
-		ready = new ExecutionQueue<ProcessControlBlock>();
+		waiting = new ExecutionQueue(comparator);
+		ready = new ExecutionQueue(comparator);
 	}
 	
-	public static void add(int PID, int priority){
+	public void handleState(ProcessControlBlock pcb){
 		
+		// If PCB state is terminated, remove the process from the queue
+		if (pcb.getState() == State.EXIT){
+			removePCB(pcb.getPID());
+		}
+	}
+	
+	
+	public void insertPCB(Process p, int priority){
+		// If ram is available, add to ready queue
+		ProcessControlBlock pcb = new ProcessControlBlock(p).setPriority(priority);
+		ready.enQueue(pcb);
+		pcb.setState(State.READY);
+		
+		// Else add to waiting queue
+		// waiting.enQueue(pcb);
+		// pcb.setState(State.WAIT);
+	}
+	
+	public void removePCB(int PID){
+		ready.deQueue(PID);
+	}
+	
+	public ExecutionQueue getReadyQueue(){
+		return ready;
+	}
+	
+	public ExecutionQueue getWaitingQueue(){
+		return waiting;
 	}
 
-	public static void remove(int PID){
-		
-	}
-	
-	public static void insertPCB(ProcessControlBlock pcb){
-		// if ram is available, add to ready queue+
-		if (ready.enQueue(pcb)){
-			pcb.setState(State.READY);
-		}
-		
-		
-		// else add to waiting queue
-		// if (waiting.enQueue(pcb)){
-		//	 pcb.setState(State.WAIT);
-	}
-	
-	public static void removePCB(ProcessControlBlock pcb){
-		//ready.deQueue(pcb);
-		//waiting.deQueue(pcb);
-	}
 
 	
 
