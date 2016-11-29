@@ -21,7 +21,7 @@ import java.nio.file.Files;
  */
  
 public class Memory {
-	byte[] RAM, output;
+	public static byte[] RAM, output;
 	int byteInt = 0, byte_inverse_counter = -1, byte_counter = -8, size = 262144;
 	ByteArrayOutputStream write;
 	ByteArrayInputStream read;
@@ -33,7 +33,11 @@ public class Memory {
 	
 	
 	public void SET(byte[] input, int offset,int length){
-		for(int i = 0; i < length;i++){
+		if(input.length > length){
+			System.out.println("FRAME OVERFLOW!!!");
+		}
+		for(int i = 0; i < input.length;i++){
+			System.out.println("i::: " + i);
 			RAM[offset + i] = input[i];
 		}
 	}

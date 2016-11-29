@@ -5,13 +5,15 @@ public class ProcessControlBlock {
 	private Process process;
 	private State state;
 	int priority, defaultPriority = 5;
+	Memory RAM;
 	
 	// Constructor with PID
-	public ProcessControlBlock(int PID){
+	public ProcessControlBlock(int PID, Memory t){
+		RAM = t;
 		this.PID = PID;
 		
 		// Create a new process
-		this.process = new Process(PID);		
+		this.process = new Process(PID, RAM);		
 		this.priority = defaultPriority;
 		this.state = State.NEW;
 	}

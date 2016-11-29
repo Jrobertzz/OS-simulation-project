@@ -10,7 +10,6 @@ public class Boot {
 		Memory RAM = new Memory();
 		GraphicalUserInterface GUI = new GraphicalUserInterface();
 		CentralProcessingUnit CPU = new CentralProcessingUnit(RAM);
-		Process newProcess = new Process();
 		CPU processor = new CPU(CPU);
 		RAMFrames frames = new RAMFrames(RAM);
 		Interpretor testing = new Interpretor();
@@ -35,6 +34,7 @@ public class Boot {
 		/**/		CPU.setOpcode(0, test.stringToByteArray("div 20 2"));	/**/
 					CPU.cycle();
 		/**************************TESTING CPU ON BOOT*************************/
+		Process newProcess = new Process(RAM);
 
 		//byte[] initramfs = new byte[1];
 		//initramfs[0] = 0;
