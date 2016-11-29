@@ -22,7 +22,7 @@ import java.nio.file.Files;
  
 public class Memory {
 	byte[] RAM, output;
-	int byteInt = 0, byte_inverse_counter = -1, byte_counter = -8, size = 256000;
+	int byteInt = 0, byte_inverse_counter = -1, byte_counter = -8, size = 262144;
 	ByteArrayOutputStream write;
 	ByteArrayInputStream read;
 	public Memory(){

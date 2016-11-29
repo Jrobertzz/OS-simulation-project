@@ -1,10 +1,12 @@
 
 public class Process {
-	private int arrivalTime, CPUTime;
+	private static int arrivalTime, CPUTime, reqMem;
 	
-	public Process(int PID, int priority, PIDList PIDs){
+	public Process(int PID, int priority, PIDList PIDs, int memoryNeeded){
+		reqMem = memoryNeeded;
 		ProcessControlBlock PCB = new ProcessControlBlock(this, PID, priority, PIDs);
 		Scheduler.insertPCB(PCB);
+		allocateRAM();
 	}
 
 	public Process(PIDList PIDs){
@@ -12,6 +14,8 @@ public class Process {
 		Scheduler.insertPCB(PCB);
 	}
 
-	
+	public void allocateRAM(){
+		//int temp
+	}
 	
 }

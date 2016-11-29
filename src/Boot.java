@@ -12,6 +12,9 @@ public class Boot {
 		PIDList PIDs = new PIDList();
 		CentralProcessingUnit CPU = new CentralProcessingUnit(RAM);
 		Process newProcess = new Process(PIDs);
+		CPU processor = new CPU(CPU);
+		RAMFrames frames = new RAMFrames(RAM);
+		Interpretor testing = new Interpretor();
 		
 		/**************************TESTING CPU ON BOOT*************************/
 		/**/		Interpretor test = new Interpretor();					/**/
@@ -20,14 +23,18 @@ public class Boot {
 		/**/		//System.out.println(test.byteArrayToString(initramfs));/**/
 		/**/		//CPU.setOpcode(0, initramfs);							/**/
 		/**/		//System.out.println(test.byteArrayToString(CPU.cache));/**/
-		/**/		CPU.setOpcode(0, test.stringToByteArray("set R4 4"));	/**/
+		/**/		CPU.setOpcode(0, test.stringToByteArray("set R4 int 4"));	/**/
 		/**/		CPU.cycle();											/**/
-		/**/		CPU.setOpcode(0, test.stringToByteArray("load R4"));	/**/
-		/**/		System.out.println("CPU output:	" + CPU.cycle());		/**/
+		/**/		//CPU.setOpcode(0, test.stringToByteArray("load R4"));	/**/
+		/**/		//System.out.println("CPU output:	" + CPU.cycle());		/**/
 		/**/		CPU.setOpcode(0, test.stringToByteArray("add 3 4"));	/**/
+					CPU.cycle();
 		/**/		CPU.setOpcode(0, test.stringToByteArray("sub 10 40"));	/**/
+					CPU.cycle();
 		/**/		CPU.setOpcode(0, test.stringToByteArray("mul 3 6"));	/**/
+					CPU.cycle();
 		/**/		CPU.setOpcode(0, test.stringToByteArray("div 20 2"));	/**/
+					CPU.cycle();
 		/**************************TESTING CPU ON BOOT*************************/
 
 		//byte[] initramfs = new byte[1];
@@ -37,9 +44,9 @@ public class Boot {
 		
 		
 		
-		MemTest testmem = new MemTest(RAM, GUI);
-		File tests = new File("test.txt", GUI);
-		CPU.cycle();
+		//MemTest testmem = new MemTest(RAM, GUI);
+		//File tests = new File("test.txt", GUI);
+		//CPU.cycle();
 	}
 
 }
