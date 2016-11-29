@@ -11,7 +11,7 @@ public class Boot {
 		GraphicalUserInterface GUI = new GraphicalUserInterface();
 		CentralProcessingUnit CPU = new CentralProcessingUnit(RAM);
 		CPU processor = new CPU(CPU);
-		RAMFrames frames = new RAMFrames(RAM);
+		//RAMFrames frames = new RAMFrames(RAM);
 		Interpretor testing = new Interpretor();
 		
 		/**************************TESTING CPU ON BOOT*************************/

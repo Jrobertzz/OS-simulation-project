@@ -32,6 +32,7 @@ public class RAMFrames {
 				if(i >= memReq)
 					break;
 			}
+			RAM.SET(frames, 0, 256);
 		return memSpace;
 	}
 }
