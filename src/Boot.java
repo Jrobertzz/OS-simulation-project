@@ -11,6 +11,7 @@ public class Boot {
 		GraphicalUserInterface GUI = new GraphicalUserInterface();
 		PIDList PIDs = new PIDList();
 		CentralProcessingUnit CPU = new CentralProcessingUnit(RAM);
+		Process newProcess = new Process(PIDs);
 		
 		/**************************TESTING CPU ON BOOT*************************/
 		/**/		Interpretor test = new Interpretor();					/**/
@@ -34,8 +35,10 @@ public class Boot {
 		//CPU.setCache(0, initramfs);
 		//Process GUI = new Process(0, graphicalUserInterface.priority);
 		
+		
+		
 		MemTest testmem = new MemTest(RAM, GUI);
-		File tests = new File("test.tzt", GUI);
+		File tests = new File("test.txt", GUI);
 		CPU.cycle();
 	}
 

@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-import java.util.PriorityQueue;
 
 /*
  * Simple Scheduler, ideally broken up into
@@ -8,15 +7,12 @@ import java.util.PriorityQueue;
  * created be Jrobertzz
  */
 public class Scheduler{
-	ArrayList PIDs;
+	static ExecutionQueue<ProcessControlBlock> waiting;
+	static ExecutionQueue<ProcessControlBlock> ready;
+
 	public Scheduler(){
-		PIDs = new ArrayList<Integer>();
-		PriorityQueue waiting = new PriorityQueue();
-		PriorityQueue ready = new PriorityQueue();
-	}
-	
-	public ArrayList getPIDs(){
-		return PIDs;
+		waiting = new ExecutionQueue<ProcessControlBlock>();
+		ready = new ExecutionQueue<ProcessControlBlock>();
 	}
 	
 	public static void add(int PID, int priority){
@@ -26,6 +22,24 @@ public class Scheduler{
 	public static void remove(int PID){
 		
 	}
+	
+	public static void insertPCB(ProcessControlBlock pcb){
+		// if ram is available, add to ready queue+
+		if (ready.enQueue(pcb)){
+			pcb.setState(State.READY);
+		}
+		
+		
+		// else add to waiting queue
+		// if (waiting.enQueue(pcb)){
+		//	 pcb.setState(State.WAIT);
+	}
+	
+	public static void removePCB(ProcessControlBlock pcb){
+		//ready.deQueue(pcb);
+		//waiting.deQueue(pcb);
+	}
+
 	
 
 }
