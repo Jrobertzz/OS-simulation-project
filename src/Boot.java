@@ -1,3 +1,5 @@
+import java.io.IOException;
+
 /*
  * main java class, initializes operating system simulation
  * 
@@ -5,7 +7,7 @@
  */
 public class Boot {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException {
 		Scheduler schedule = new Scheduler();
 		Memory RAM = new Memory();
 		GraphicalUserInterface GUI = new GraphicalUserInterface();
@@ -21,20 +23,26 @@ public class Boot {
 		/**/		//System.out.println(test.byteArrayToString(initramfs));/**/
 		/**/		//CPU.setOpcode(0, initramfs);							/**/
 		/**/		//System.out.println(test.byteArrayToString(CPU.cache));/**/
-		/**/		CPU.setOpcode(0, test.stringToByteArray("set R4 int 4"));	/**/
-		/**/		CPU.cycle();											/**/
+		/**/		//CPU.setOpcode(0, test.stringToByteArray("set R4 int 4"));	/**/
+		/**/		//CPU.cycle();											/**/
 		/**/		//CPU.setOpcode(0, test.stringToByteArray("load R4"));	/**/
 		/**/		//System.out.println("CPU output:	" + CPU.cycle());		/**/
-		/**/		CPU.setOpcode(0, test.stringToByteArray("add 3 4"));	/**/
-					CPU.cycle();
-		/**/		CPU.setOpcode(0, test.stringToByteArray("sub 10 40"));	/**/
-					CPU.cycle();
-		/**/		CPU.setOpcode(0, test.stringToByteArray("mul 3 6"));	/**/
-					CPU.cycle();
-		/**/		CPU.setOpcode(0, test.stringToByteArray("div 20 2"));	/**/
-					CPU.cycle();
+		/**/		//CPU.setOpcode(0, test.stringToByteArray("add 3 4"));	/**/
+					//CPU.cycle();
+		/**/		//CPU.setOpcode(0, test.stringToByteArray("sub 10 40"));	/**/
+					//CPU.cycle();
+		/**/		//CPU.setOpcode(0, test.stringToByteArray("mul 3 6"));	/**/
+					//CPU.cycle();
+		/**/		//CPU.setOpcode(0, test.stringToByteArray("div 20 2"));	/**/
+					//CPU.cycle();
 		/**************************TESTING CPU ON BOOT*************************/
-		Process newProcess = new Process(RAM);
+		//Process newProcess = new Process(RAM);
+		
+		HDD testhdd = new HDD();
+		byte[] fakehdd = testing.stringToByteArray("T");
+		//System.out.println(fakehdd.length);
+		testhdd.SET(fakehdd, 1024000000, fakehdd.length);
+		System.out.println(testing.byteArrayToString(testhdd.GET(1024000000, fakehdd.length)));
 
 		//byte[] initramfs = new byte[1];
 		//initramfs[0] = 0;
