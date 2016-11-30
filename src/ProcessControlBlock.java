@@ -6,25 +6,16 @@ public class ProcessControlBlock {
 	private State state;
 	int priority, defaultPriority = 5;
 	Memory RAM;
-	
-	// Constructor with PID
-	public ProcessControlBlock(int PID, Memory t){
-		RAM = t;
-		this.PID = PID;
 		
-		// Create a new process
-		this.process = new Process(PID, RAM);		
-		this.priority = defaultPriority;
-		this.state = State.NEW;
-	}
-	
 	// Constructor with process provided
 	public ProcessControlBlock(Process p){
 		this.PID = p.getPID();
 		this.process = p;
+		this.RAM = p.getRAM();
 		this.priority = defaultPriority;
 		this.state = State.NEW;
 	}
+	
 	
 	public Process getProcess(){
 		return process;
@@ -40,11 +31,11 @@ public class ProcessControlBlock {
 	}
 	
 	public int getPID(){
-		return PID;
+		return this.PID;
 	}
 	
 	public State getState(){
-		return state;
+		return this.state;
 	}
 	
 	public ProcessControlBlock setState(State state){
@@ -69,6 +60,9 @@ public class ProcessControlBlock {
 	
 	//TODO
 	public void setCPUTime(){}
-
+	
+	public String toString(){
+		return "PID: " + PID;
+	}
 }
 

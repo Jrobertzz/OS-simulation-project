@@ -4,12 +4,13 @@ public class Process {
 	Memory RAM;
 	
 	public Process(Memory t){
-		System.out.println();
-		System.out.println("1");
+		//System.out.println();
+		//System.out.println("1");
 		RAM = t;
 		Interpretor byteInterpretor = new Interpretor();
 		this.PID = PIDGenerator.newPID();
-		System.out.println("2");
+		
+		//System.out.println("2");
 		
 		// TESTINT
 		reqMem = 50;
@@ -25,12 +26,12 @@ public class Process {
 		
 	}
 	
-	public Process(int PID, Memory Ram){
-		this.PID = PID;
-	}
-	
 	public int getPID(){
 		return this.PID;
+	}
+	
+	public Memory getRAM(){
+		return RAM;
 	}
 	
 	public void setLocalMem(){

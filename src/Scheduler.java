@@ -7,13 +7,10 @@ import java.util.Comparator;
  * created be Jrobertzz
  */
 public class Scheduler{
-	private Comparator<ProcessControlBlock> comparator = new PriorityComparator();
-	private ExecutionQueue waiting;
 	private ExecutionQueue ready;
 
 	public Scheduler(){
-		waiting = new ExecutionQueue(comparator);
-		ready = new ExecutionQueue(comparator);
+		ready = new ExecutionQueue();
 	}
 	
 	public void handleState(ProcessControlBlock pcb){
@@ -37,16 +34,16 @@ public class Scheduler{
 	}
 	
 	public void removePCB(int PID){
-		ready.deQueue(PID);
+		ready.remove(PID);
 	}
 	
 	public ExecutionQueue getReadyQueue(){
 		return ready;
 	}
 	
-	public ExecutionQueue getWaitingQueue(){
-		return waiting;
-	}
+	//public ExecutionQueue getWaitingQueue(){
+	//	return waiting;
+	//}
 
 
 	
