@@ -9,6 +9,10 @@ import java.util.StringTokenizer;
  * I think(mov mult etc.)
  * 
  * Created by Jrobertzz 11/10/2016
+ *
+ *TO SIMULATE CPU CYCLE, MAKE A CPU OBJECT, FOR EXAMPLE "CPU" AND CALL CPU.cycle(); FOR ONE CPU CYCLE
+ *OR FEEL FREE TO ADD METHODS FOR SIMULATED CYCLES
+ *TO ADD COMMANDS, JUST PUT THEM IN TERMINATOR METHOD IN GRAPHICALUSERINTERFACE CLASS IN THE SWITCH STATEMENT
  */
 public class CPU {
 	private static int counter;
