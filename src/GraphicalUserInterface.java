@@ -35,7 +35,8 @@ public class GraphicalUserInterface implements ActionListener{
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		JPanel content = new JPanel();
-		content.setPreferredSize(new Dimension(1280, 960));
+		content.setPreferredSize(new Dimension(1280, 640));
+		//content.setPreferredSize(new Dimension(1280, 960));
 		frame.getContentPane().add(content, BorderLayout.CENTER);
 		
 		JPanel console = new JPanel();
@@ -97,20 +98,30 @@ public class GraphicalUserInterface implements ActionListener{
 				break;
 			case "EXE":
 				if(command[1].equals("cycles")){
-					String com = "";
-					for(int i = 3; i < command.length; i++){
-						com = com + command[i];
+					if(command.length > 2)
+					{
+						String com = "";
+						for(int i = 3; i < command.length; i++){
+							com = com + command[i];
+						}
+						//System.out.println("command:::::" + com);
+						Interpretor com_interpretor = new Interpretor();
+						CPU.setOpcode(0, com_interpretor.stringToByteArray(com));
+						CPU.advanceClock();
+						CPU.setOpLength(12);
+						CPU.advanceClock();
+						CPU.setInstructionPointer(20);
+						CPU.advanceClock();
+						CPU.setOpLength(3);
+						CPU.setInstructionPointer(50);
+						CPU.advanceClock();
+						
+						CPU.setInstructionPointer(0);
+						CPU.advanceClock();
+						CPU.setOpcode(0, com_interpretor.stringToByteArray("load R3"));
+						byte[] print = CPU.cycle();
+						System.out.println(com_interpretor.byteArrayToInt(print));
 					}
-					System.out.println("command:::::" + com);
-					Interpretor com_interpretor = new Interpretor();
-					CPU.setOpcode(0, com_interpretor.stringToByteArray(com));
-					CPU.cycle();
-					int k = Integer.valueOf(command[2]);
-					for(int i = k; i > 0; i--){
-						System.out.println(i);
-						CPU.cycle();
-					}
-					CPU.advanceClock();
 				}
 				else{
 					System.out.println("cycle");

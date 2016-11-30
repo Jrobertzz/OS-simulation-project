@@ -18,7 +18,7 @@ public class Boot {
 		
 		/**************************TESTING CPU ON BOOT*************************/
 		/**/		Interpretor test = new Interpretor();					/**/
-		CPU.setOpcode(0, test.stringToByteArray("set R16 boolean false"));	//SETS INTERUPT FLAG TO FALSE
+		//CPU.setOpcode(0, test.stringToByteArray("set R16 boolean false"));	//SETS INTERUPT FLAG TO FALSE
 		/**/		//String testopcode = "test";							/**/
 		/**/		//byte[] initramfs = test.stringToByteArray(testopcode);/**/
 		/**/		//System.out.println(test.byteArrayToString(initramfs));/**/
@@ -28,17 +28,17 @@ public class Boot {
 		/**/		//CPU.cycle();											/**/
 		/**/		//CPU.setOpcode(0, test.stringToByteArray("load R4"));	/**/
 		/**/		//System.out.println("CPU output:	" + CPU.cycle());		/**/
-		/**/		CPU.setOpcode(0, test.stringToByteArray("add 3 4"));	/**/
-					CPU.advanceClock();
+		/**/		//CPU.setOpcode(0, test.stringToByteArray("add 3 4"));	/**/
+					//CPU.advanceClock();
 		/**/		//CPU.setOpcode(0, test.stringToByteArray("sub 10 40"));	/**/
 					//CPU.cycle();
-		/**/		CPU.setOpcode(0, test.stringToByteArray("mul 3 6"));	/**/
-					CPU.advanceClock();
-					CPU.advanceClock();
+		/**/		//CPU.setOpcode(0, test.stringToByteArray("mul 3 6"));	/**/
 					//CPU.advanceClock();
-		/**/		CPU.setOpcode(0, test.stringToByteArray("div 20 2"));	/**/
-					CPU.advanceClock();
-					CPU.advanceClock();
+					//CPU.advanceClock();
+					//CPU.advanceClock();
+		/**/		//CPU.setOpcode(0, test.stringToByteArray("div 20 2"));	/**/
+					//CPU.advanceClock();
+					//CPU.advanceClock();
 		/**************************TESTING CPU ON BOOT*************************/
 		//Process newProcess = new Process(RAM);
 		
