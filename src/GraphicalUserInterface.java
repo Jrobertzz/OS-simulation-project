@@ -21,8 +21,10 @@ public class GraphicalUserInterface implements ActionListener{
 	protected JTextField command_pane;
 	protected JTextArea command_history;
 	public int priority = 10;
-	public GraphicalUserInterface(){
-	frame();
+	static CPU CPU;
+	public GraphicalUserInterface(CPU C){
+		CPU = C;
+		frame();
 	}
 	
 	//set up swing
@@ -85,7 +87,7 @@ public class GraphicalUserInterface implements ActionListener{
 	
 
 	public void Terminator(String text){
-		String[] command = text.split("\\s+", 2);
+		String[] command = text.split("\\s+", 4);
 		switch (command[0]){
 			case "PROC":
 				break;
@@ -94,6 +96,27 @@ public class GraphicalUserInterface implements ActionListener{
 			case "LOAD":
 				break;
 			case "EXE":
+				if(command[1].equals("cycles")){
+					String com = "";
+					for(int i = 3; i < command.length; i++){
+						com = com + command[i];
+					}
+					System.out.println("command:::::" + com);
+					Interpretor com_interpretor = new Interpretor();
+					CPU.setOpcode(0, com_interpretor.stringToByteArray(com));
+					CPU.cycle();
+					int k = Integer.valueOf(command[2]);
+					for(int i = k; i > 0; i--){
+						System.out.println(i);
+						CPU.cycle();
+					}
+					CPU.advanceClock();
+				}
+				else{
+					System.out.println("cycle");
+					CPU.setInterupt(false);
+					CPU.advanceClock();
+				}
 				break;
 			case "RESET":
 				break;
