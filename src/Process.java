@@ -36,6 +36,10 @@ public class Process {
 		return RAM;
 	}
 	
+	public int getRequiredMemory(){
+		return reqMem;
+	}
+	
 	public void setLocalMem(){
 		System.out.println("the 4");
 		System.out.println("5");

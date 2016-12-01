@@ -3,16 +3,17 @@ public class RAMFrames {
 	byte[] frames;
 	Memory RAM;
 	int i;
+	int totalMemory = 256;
 	public RAMFrames(Memory t){
 		i = 0;
 		RAM = t;
-		frames = new byte[256];	//1 = used RAM, 0 = unallocated, each byte is in reference to a 1 kB frame
+		frames = new byte[totalMemory];	//1 = used RAM, 0 = unallocated, each byte is in reference to a 1 kB frame
 		//for(int k = 0; k < frames.length; k++){
 			//Byte b = new Byte();
 			//frames[12] = 0;
 		//}
 		frames[0] = 1;
-		RAM.SET(frames, 0, 256);
+		RAM.SET(frames, 0, totalMemory);
 	}
 	
 	public frame[] allocateFrames(int memReq){
@@ -33,7 +34,7 @@ public class RAMFrames {
 				if(i >= memReq)
 					break;
 			}
-			RAM.SET(frames, 0, 256);
+			RAM.SET(frames, 0, totalMemory);
 		return memSpace;
 	}
 	
@@ -46,5 +47,9 @@ public class RAMFrames {
 			}
 		}
 		return memUsed;
+	}
+	
+	public int availableMemory(){
+		return totalMemory - memUsed();
 	}
 }
