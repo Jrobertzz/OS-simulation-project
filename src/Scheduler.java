@@ -1,4 +1,6 @@
 import java.util.Comparator;
+import java.util.LinkedList;
+import java.util.List;
 
 /*
  * Simple Scheduler, ideally broken up into
@@ -8,9 +10,13 @@ import java.util.Comparator;
  */
 public class Scheduler{
 	private ExecutionQueue ready;
+	private List<ProcessControlBlock> waiting;
+	
+	private int quantum = 20;
 
 	public Scheduler(){
 		ready = new ExecutionQueue();
+		waiting = new LinkedList<ProcessControlBlock>();
 	}
 	
 	public void handleState(ProcessControlBlock pcb){
@@ -22,14 +28,14 @@ public class Scheduler{
 	}
 	
 	
-	public void insertPCB(Process p, int priority){
+	public void insertPCB(Process p){
 		// If ram is available, add to ready queue
-		ProcessControlBlock pcb = new ProcessControlBlock(p).setPriority(priority);
+		ProcessControlBlock pcb = new ProcessControlBlock(p);
 		ready.enQueue(pcb);
 		pcb.setState(State.READY);
 		
 		// Else add to waiting queue
-		// waiting.enQueue(pcb);
+		// waiting.add(pcb);
 		// pcb.setState(State.WAIT);
 	}
 	
@@ -37,10 +43,26 @@ public class Scheduler{
 		ready.remove(PID);
 	}
 	
+	public ProcessControlBlock nextProcess(){
+		ProcessControlBlock pcb = ready.deQueue();
+		if (pcb == null){
+			return null;
+		}
+		
+		if (pcb.getState() != State.WAIT){
+			pcb.setState(State.RUN);
+		}
+		
+		return pcb;
+	}
+	
 	public ExecutionQueue getReadyQueue(){
 		return ready;
 	}
 	
+	public void setQuantum(int q){
+		quantum = q;
+	}
 	//public ExecutionQueue getWaitingQueue(){
 	//	return waiting;
 	//}
