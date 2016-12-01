@@ -17,24 +17,21 @@ public class RAMFrames {
 	}
 	
 	public frame[] allocateFrames(int memReq){
-		System.out.println("memeroewyflkadgnbpireg  " + memReq);
+		int current = i;
+		System.out.println("Allocating Memory:  " + memReq + "kb");
 		frame[] memSpace = new frame[memReq];
-		//System.out.println("7");
-			for(int k = i; k < frames.length; k++){
-				//System.out.println("8" + i);
-				System.out.println("FRAME::  " + frames[k]);
-				if(frames[k] == 0){
-					System.out.println("FRAME  ::  ");
-					frames[k] = 1;
-					memSpace[i] = new frame(k, RAM);
-					System.out.println("new frame");
-					i++;
-					System.out.println("FRAME::  " + k);
-				}
-				if(i >= memReq)
-					break;
+		
+		for (int k = 0; k < memReq; k++){
+			memSpace[k] = new frame(k, RAM);
+		}
+
+		for (int k = i; k <= current + memSpace.length; k++) {
+			if (frames[k] == 0) {
+				frames[k] = 1;
+				i++;
 			}
-			RAM.SET(frames, 0, totalMemory);
+		}
+		RAM.SET(frames, 0, totalMemory);
 		return memSpace;
 	}
 	

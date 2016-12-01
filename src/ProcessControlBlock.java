@@ -11,7 +11,6 @@ public class ProcessControlBlock {
 	public ProcessControlBlock(Process p){
 		this.PID = p.getPID();
 		this.process = p;
-		this.RAM = p.getRAM();
 		this.priority = defaultPriority;
 		this.state = State.NEW;
 	}
