@@ -14,6 +14,7 @@ public class RAMFrames {
 		frames[0] = 1;
 		RAM.SET(frames, 0, 256);
 	}
+	
 	public frame[] allocateFrames(int memReq){
 		System.out.println("memeroewyflkadgnbpireg  " + memReq);
 		frame[] memSpace = new frame[memReq];
@@ -34,5 +35,16 @@ public class RAMFrames {
 			}
 			RAM.SET(frames, 0, 256);
 		return memSpace;
+	}
+	
+
+	public int memUsed(){
+		int memUsed = 0;
+		for(byte b : frames){
+			if(b == 1){
+				memUsed++;
+			}
+		}
+		return memUsed;
 	}
 }

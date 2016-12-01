@@ -10,8 +10,9 @@ public class Boot {
 	public static void main(String[] args) throws IOException {
 		Scheduler schedule = new Scheduler();
 		Memory RAM = new Memory();
+		RAMFrames frames = new RAMFrames(RAM);
 		CPU CPU = new CPU(RAM);
-		GraphicalUserInterface GUI = new GraphicalUserInterface(CPU);
+		GraphicalUserInterface GUI = new GraphicalUserInterface(CPU, frames);
 		CPUbackup processor = new CPUbackup(CPU);
 		//RAMFrames frames = new RAMFrames(RAM);
 		

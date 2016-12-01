@@ -2,10 +2,12 @@ public class Process {
 	private int PID, arrivalTime, CPUTime, reqMem;
 	private frame[] localMem;
 	Memory RAM;
+	RAMFrames frames;
 	
-	public Process(Memory t){
+	public Process(Memory t, RAMFrames f){
 		//System.out.println();
 		//System.out.println("1");
+		frames = f;
 		RAM = t;
 		Interpretor byteInterpretor = new Interpretor();
 		this.PID = PIDGenerator.newPID();
@@ -36,7 +38,6 @@ public class Process {
 	
 	public void setLocalMem(){
 		System.out.println("the 4");
-		RAMFrames frames = new RAMFrames(RAM);
 		System.out.println("5");
 		localMem = frames.allocateFrames(reqMem);
 		System.out.println("the 6");

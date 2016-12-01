@@ -9,6 +9,10 @@ import java.util.StringTokenizer;
  * I think(mov mult etc.)
  * 
  * Created by Jrobertzz 11/10/2016
+ * 
+ * use advanceClock() or cycle() to simulate on cpu cycle
+ * you can use counter to count down a number of cycles
+ * though you may need to add functionality to this class(or ask me to)
  */
 public class CPU {
 	private static int counter;

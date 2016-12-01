@@ -22,7 +22,9 @@ public class GraphicalUserInterface implements ActionListener{
 	protected JTextArea command_history;
 	public int priority = 10;
 	static CPU CPU;
-	public GraphicalUserInterface(CPU C){
+	RAMFrames frames;
+	public GraphicalUserInterface(CPU C, RAMFrames f){
+		frames = f;
 		CPU = C;
 		frame();
 	}
@@ -93,6 +95,11 @@ public class GraphicalUserInterface implements ActionListener{
 			case "PROC":
 				break;
 			case "MEM":
+				int memUsed = frames.memUsed();
+		        command_history.append(String.valueOf(memUsed));
+		        command_history.selectAll();
+		        command_history.setCaretPosition(command_history.getDocument().getLength());
+				//Terminator(command[1]);
 				break;
 			case "LOAD":
 				break;
@@ -100,10 +107,13 @@ public class GraphicalUserInterface implements ActionListener{
 				if(command[1].equals("cycles")){
 					if(command.length > 2)
 					{
+						//*** BUILDS CPU COMMAND TO SE AS OPCODE
 						String com = "";
 						for(int i = 3; i < command.length; i++){
 							com = com + command[i];
 						}
+						
+						int k = Integer.valueOf(command[2]);	//number of cycles to run for
 						//System.out.println("command:::::" + com);
 						Interpretor com_interpretor = new Interpretor();
 						CPU.setOpcode(0, com_interpretor.stringToByteArray(com));
